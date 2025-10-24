@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="es">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>BookAPI - Letras Vivas</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous" />
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <style>
+        dialog::backdrop { background: rgba(0,0,0,0.5); }
+    </style>
+</head>
+<body class="bg-gray-100 min-h-screen flex items-start justify-center p-6">
+<div class="w-full max-w-4xl">
+    <header class="flex items-center justify-between mb-6">
+        <h1 class="text-2xl font-bold"><i class="fas fa-book"></i> BookAPI - Letras Vivas</h1>
+        <div class="flex gap-2 items-center">
+            <input id="input-buscar" type="search" placeholder="Buscar por título..." class="px-3 py-2 border rounded-md" />
+            <button id="btn-buscar" class="px-3 py-2 bg-blue-600 text-white rounded-md"><i class="fas fa-search"></i> Buscar</button>
+            <button id="btn-nuevo" class="px-3 py-2 bg-green-600 text-white rounded-md"><i class="fas fa-plus"></i> Nuevo libro</button>
+        </div>
+    </header>
+
+    <main>
+        <div class="bg-white shadow rounded-lg overflow-hidden">
+            <table class="min-w-full table-auto">
+                <thead class="bg-gray-50">
+                <tr>
+                    <th class="px-4 py-3 text-left">Título</th>
+                    <th class="px-4 py-3 text-left">Autor</th>
+                    <th class="px-4 py-3 text-left">Año</th>
+                    <th class="px-4 py-3 text-right">Acciones</th>
+                </tr>
+                </thead>
+                <tbody id="tbody-libros" class="divide-y"></tbody>
+            </table>
+        </div>
+        <p id="mensaje-vacio" class="text-center text-gray-500 mt-4">Cargando libros...</p>
+    </main>
+
+    <footer class="mt-6 text-sm"><p class="text-gray-500">API: <code>/api/v1/books</code></p><br><a class="text-blue-500" href="http://localhost:8080/api/v1/books" target="_blank">API Service: http://localhost:8080/api/v1/books</a><br><a class="text-blue-500" href="http://localhost:8080/swagger-ui/index.html" target="_blank">swagger: http://localhost:8080/swagger-ui/index.html</a> </footer>
+</div>
+
+<dialog id="dialog-libro" class="rounded-lg p-0 w-full max-w-lg">
+    <form method="dialog" id="form-libro" class="bg-white rounded-lg shadow-lg p-6">
+        <h2 id="dialog-titulo" class="text-lg font-semibold mb-4"><i class="fas fa-edit"></i> Nuevo libro</h2>
+        <input type="hidden" id="libro-id" />
+        <div class="mb-3">
+            <label class="block text-sm">Título</label>
+            <input id="libro-titulo" required class="w-full px-3 py-2 border rounded-md" />
+        </div>
+        <div class="mb-3">
+            <label class="block text-sm">Autor</label>
+            <input id="libro-autor" required class="w-full px-3 py-2 border rounded-md" />
+        </div>
+        <div class="mb-4">
+            <label class="block text-sm">Año</label>
+            <input id="libro-anyo" type="number" min="0" required class="w-full px-3 py-2 border rounded-md" />
+        </div>
+        <div class="flex justify-end gap-2">
+            <button type="button" id="btn-cancelar" class="px-4 py-2"><i class="fas fa-times"></i> Cancelar</button>
+            <button type="submit" id="btn-guardar" class="px-4 py-2 bg-blue-600 text-white rounded-md"><i class="fas fa-save"></i> Guardar</button>
+        </div>
+    </form>
+</dialog>
+
+<script src="js/ApiBook.js"></script>
+</body>
+</html>
